@@ -25,7 +25,7 @@ defmodule Ralsei do
   def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
     cond do
       String.starts_with?(msg.content, "!ola") ->
-        Message.create(msg.channel_id, "Vai tomar no cu #{msg.author.username}!")
+        Message.create(msg.channel_id, "ola, #{msg.author.username}!")
 
       String.starts_with?(msg.content, "!coffee") ->
         Message.create(msg.channel_id, Coffee.handleCoffeeCommand(msg.content))
