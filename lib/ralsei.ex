@@ -9,6 +9,8 @@ defmodule Ralsei do
   alias Ralsei.Command.Tmdb
   alias Ralsei.Command.Feriado
   alias Ralsei.Command.Yugioh
+  alias Ralsei.Command.Breakingbad
+  alias Ralsei.Command.Idade
   @moduledoc """
   Documentation for `Ralsei`.
   """
@@ -25,7 +27,7 @@ defmodule Ralsei do
   def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
     cond do
       String.starts_with?(msg.content, "!ola") ->
-        Message.create(msg.channel_id, "Vai tomar no cu #{msg.author.username}!")
+        Message.create(msg.channel_id, "Ola, #{msg.author.username}!")
 
       String.starts_with?(msg.content, "!coffee") ->
         Message.create(msg.channel_id, Coffee.handleCoffeeCommand(msg.content))
@@ -41,6 +43,12 @@ defmodule Ralsei do
 
       String.starts_with?(msg.content, "!yugioh") ->
         Message.create(msg.channel_id, Yugioh.handleYugiohCommand(msg.content))
+
+      String.starts_with?(msg.content, "!breakingbad") ->
+        Message.create(msg.channel_id, Breakingbad.handleBreakingBadCommand(msg.content))
+
+      String.starts_with?(msg.content, "!idade") ->
+        Message.create(msg.channel_id, Idade.handleIdadeCommand(msg.content))
 
       true ->
         :ignore

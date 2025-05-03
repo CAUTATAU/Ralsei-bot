@@ -12,8 +12,13 @@ defmodule Ralsei.Command.Coffee do
         response = HTTPoison.get("https://coffee.alexflipnote.dev/random.json")
         case response do
           {:ok, value} ->
-            json = Jason.decode!(value.body)
-            {:ok, json["file"]}
+            json = JSON.decode(value.body)
+            case json do
+              {:ok, map} -> {:ok, map["file"]}
+
+              _ ->
+                :error
+            end
           _ ->
             :error
         end
